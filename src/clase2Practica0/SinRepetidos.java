@@ -1,4 +1,4 @@
-package practica0;
+package clase2Practica0;
 
 public class SinRepetidos {
 
