@@ -5,6 +5,11 @@ import java.util.Scanner;
 
 public class EjeException {
 
+	/**
+	 * Recibe un String, y si no es vacio returna el char a
+	 * @param String
+	 * @return 'a'
+	 **/
 	static char noVacioEntoncesA(String s) {
 		if (s.length() == 0) {
 			// System.out.println("El String está vacio");
@@ -53,14 +58,16 @@ public class EjeException {
 		 */
 
 		try {
-			String s = "Hola";
+			Scanner scan = new Scanner(System.in);
+			System.out.println("Ingrese una cadena");
+			String s = scan.nextLine();
 			System.out.println(noVacioEntoncesA(s));
 		} catch (Exception ex) {
 			System.out.println("Se produjo el error: " + ex.getMessage());
 		} finally {
-			System.out.println("Siempre se ejecuta esto, haya o no error");
+			System.out.println("Siempre se ejecuta esto, haya o no un error");
 		}
-		System.out.println("Llegué acá");
+		System.out.println("Llegué acá, se capturaron correctamente las excepciones");
 
 	}
 }
