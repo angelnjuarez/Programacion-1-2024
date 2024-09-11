@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class EjeException {
 
 	/**
-	 * Recibe un String, y si no es vacio returna el char a
+	 * Recibe un String, y si no es vacio retorna el char a
 	 * @param String
 	 * @return 'a'
 	 **/
@@ -20,20 +20,20 @@ public class EjeException {
 
 	public static void main(String[] args) {
 
-		/*
+		/**
 		 * Excepciones de Java: ArithmeticException
-		 */
+		 **/
 		// int i = 10/0;
 
-		/*
+		/**
 		 * Error al parsear
-		 */
+		 **/
 		// String s = "5d";
 		// int x = Integer.parseInt(s);
 
-		/*
+		/**
 		 * Bloque try/catch
-		 */
+		 **/
 //		String abc = "abcdefghijklmnopqrstuvwxyz";
 //		boolean ok = false;
 //		while (!ok) {
@@ -53,9 +53,9 @@ public class EjeException {
 //			}
 //		}
 
-		/*
+		/**
 		 * Excepciones propias
-		 */
+		 **/
 
 		try {
 			Scanner scan = new Scanner(System.in);
