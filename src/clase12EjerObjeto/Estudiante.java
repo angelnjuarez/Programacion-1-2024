@@ -1,6 +1,6 @@
 package clase12EjerObjeto;
 
-public class Estudiantes {
+public class Estudiante {
 	String nombre;
 	int legajo;
 }
