@@ -108,8 +108,25 @@ public class UNGS {
 	 * f) Devuelve la cantidad de materias que tienen una unica comision
 	 */
 	 int unicaComision() {
-		 
+		 int cantUnicas = 0;
+		 for (Comision c : this.comisiones) {
+			 if (esUnica(c.materia)) {
+				 cantUnicas++;
+			 }
+		 }
+		 return cantUnicas;
 	 }
+
+	//Aux punto e
+	private boolean esUnica(String materia) {
+		int cantApariciones = 0;
+		for (Comision c : this.comisiones) {
+			if(c.materia.equals(materia)) {
+				cantApariciones++;
+			}
+		}
+		return cantApariciones==1;
+	}
 	 
 	 
 	 
