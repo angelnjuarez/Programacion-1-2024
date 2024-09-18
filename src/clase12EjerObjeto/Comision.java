@@ -25,24 +25,34 @@ public class Comision {
 		return false;
 	}
 
-
 	public boolean estaAprobado(Estudiante e) {
-		//Puede ser inscriptos.length o calificaciones.length
+		// Puede ser inscriptos.length o calificaciones.length
 		for (int i = 0; i < calificaciones.length; i++) {
-			if(this.inscriptos[i].equals(e) &&
-			   this.calificaciones[i]>=4) {
+			if (this.inscriptos[i].equals(e) && this.calificaciones[i] >= 4) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public int mayorCalificacion() {
+		int masAlta = this.calificaciones[0];
+		for (int i = 1; i < this.calificaciones.length; i++) {
+			if (this.calificaciones[i] > masAlta) {
+				masAlta = this.calificaciones[i];
+			}
+		}
+		return masAlta;
+	}
+
+	public int cantidadPremios(int calificacion) {
+		int cantPremios = 0;
+		for (int i = 0; i < this.calificaciones.length; i++) {
+			if (this.calificaciones[i] == calificacion) {
+				cantPremios++;
+			}
+		}
+		return cantPremios;
+	}
+
 }

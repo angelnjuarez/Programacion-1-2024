@@ -55,4 +55,69 @@ public class UNGS {
 		return cantAprob;
 	}
 
+	/**
+	 * d) Devuelve la cantidad de estudiantes que obtuvieron la mejor nota cada
+	 * comision.
+	 */
+	int losMejores() {
+		int cantPremios = 0;
+		for (Comision c : this.comisiones) {
+			int calMasAlta = mayorCalificacion(c.calificaciones);
+			for (int i = 0; i < c.calificaciones.length; i++) {
+				if (c.calificaciones[i] == calMasAlta) {
+					cantPremios++;
+				}
+			}
+		}
+		return cantPremios;
+	}
+
+	int mayorCalificacion(int[] calificaciones) {
+		int masAlta = calificaciones[0];
+		for (int i = 1; i < calificaciones.length; i++) {
+			if (calificaciones[i] > masAlta) {
+				masAlta = calificaciones[i];
+			}
+		}
+		return masAlta;
+	}
+	
+	int losMejores2() {
+		int cantPremios = 0;
+		for (Comision c : this.comisiones) {
+			int calMasAlta = c.mayorCalificacion();
+			cantPremios += c.cantidadPremios(calMasAlta);
+		}
+		return cantPremios;
+	}
+	
+	/**
+	 * e) Devuelve la cantidad de estudiantes del docente dado
+	 */
+	int alumnosDe(Docente d) {
+		int cantEstudiantes = 0;
+		for (Comision c : this.comisiones) {
+			if(c.estaDocente(d))
+				cantEstudiantes += c.inscriptos.length;
+		}
+		return cantEstudiantes;
+	}
+	
+	
+	/**
+	 * f) Devuelve la cantidad de materias que tienen una unica comision
+	 */
+	 int unicaComision() {
+		 
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+
 }
