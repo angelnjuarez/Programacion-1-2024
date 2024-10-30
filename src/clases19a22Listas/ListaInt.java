@@ -1,4 +1,4 @@
-package clases192021Listas;
+package clases19a22Listas;
 
 public class ListaInt {
 	NodoInt primero;
@@ -24,7 +24,7 @@ public class ListaInt {
 		if (this.primero == null) {
 			return;
 		}
-		if (this.primero != null && this.primero.elemento == e) {
+		if (this.primero.elemento == e) {
 			this.primero = this.primero.siguiente;
 			return;
 		}
@@ -100,14 +100,14 @@ public class ListaInt {
 	/*
 	 * Ej 1
 	 */
-	public void descomponerPares(){
+	public void descomponerPares() {
 		NodoInt actual = this.primero;
-		while(actual != null) {
-			if(actual.elemento%2==0) {
-				NodoInt nuevo = new NodoInt(actual.elemento*2);
+		while (actual != null) {
+			if (actual.elemento % 2 == 0) {
+				NodoInt nuevo = new NodoInt(actual.elemento * 2);
 				nuevo.siguiente = actual.siguiente;
 				actual.siguiente = nuevo;
-				actual.elemento = actual.elemento/2;
+				actual.elemento = actual.elemento / 2;
 				actual = actual.siguiente.siguiente;
 			} else {
 				actual = actual.siguiente;
@@ -123,22 +123,28 @@ public class ListaInt {
 		NodoInt actual = this.primero;
 		while (actual.siguiente != null || actual.siguiente != null) {
 			if (actual.siguiente.elemento % 2 == 0) {
-				lNueva.agregarAdelante(actual.siguiente.elemento);
+				lNueva.agregarAdelante(actual.siguiente.elemento); // O(1)
 				actual.siguiente = actual.siguiente.siguiente;
 			}
 			actual = actual.siguiente;
 		}
 		if (this.primero.elemento % 2 == 0) {
-			lNueva.agregarAdelante(this.primero.elemento);
+			lNueva.agregarAdelante(this.primero.elemento); // O(1)
 			this.primero = this.primero.siguiente;
 		}
-		ListaInt nueva2 = new ListaInt();
-		NodoInt actuall2 = lNueva.primero;
-		while (actuall2 != null) {
-			nueva2.agregarAdelante(actuall2.elemento);
-			actuall2 = actuall2.siguiente;
+		//return lNueva;
+		// Si deseo recuperar el orden original de la lista
+		return lNueva.invertirLista();
+	}
+	
+	public ListaInt invertirLista() {
+		ListaInt nueva = new ListaInt();
+		NodoInt actual = this.primero;
+		while (actual != null) {
+			nueva.agregarAdelante(actual.elemento);
+			actual = actual.siguiente;
 		}
-		return nueva2;
+		return nueva;
 	}
 
 	public void agregarAdelante(int e) {
@@ -147,30 +153,59 @@ public class ListaInt {
 		this.primero = nuevo;
 	}
 
-	public static void main(String[] args) {
-		ListaInt aDescomponer = new ListaInt();
-		aDescomponer.agregarAtras(1);
-		aDescomponer.agregarAtras(12);
-		aDescomponer.agregarAtras(3);
-		aDescomponer.imprimir();
-		aDescomponer.descomponerPares();
-		aDescomponer.imprimir();
-		
-		ListaInt caso1 = new ListaInt();
-		caso1.agregarAtras(2);
-		caso1.agregarAtras(5);
-		caso1.agregarAtras(4);
-		caso1.agregarAtras(3);
-		caso1.imprimir();
-		caso1.extraerPares().imprimir();
-		caso1.imprimir();
-		ListaInt caso2 = new ListaInt();
-		caso2.agregarAtras(3);
-		caso2.agregarAtras(8);
-		caso2.agregarAtras(3);
-		caso2.imprimir();
-		caso2.extraerPares().imprimir();
-		caso2.imprimir();
+	
+	/*
+	 *  Parcial (turno tarde) – 8/11/2023
+	 */
+	
+	public ListaInt extraerConsecutivos() {
+		ListaInt nueva = new ListaInt();
+		int menor = menor(); // O(n)
+		nueva.primero = new NodoInt(menor); // O(1)
+		NodoInt actual = this.primero;
+		NodoInt ultimo = nueva.primero;
+		while (actual != null && actual.siguiente != null) {
+			if (actual.siguiente.elemento == ultimo.elemento + 1) {
+				ultimo = nueva.agregarAtras(actual.siguiente.elemento, ultimo); // O(1)
+				actual.siguiente = actual.siguiente.siguiente;
+			} else {
+				actual = actual.siguiente;
+			}
+		}
+		eliminarMenor(menor); // O(n)
+		return nueva;
 	}
+
+	private void eliminarMenor(int menor) {
+		NodoInt actual = this.primero;
+		while (actual != null && actual.siguiente != null) {
+			if (actual.siguiente.elemento == menor) {
+				actual.siguiente = actual.siguiente.siguiente;
+			}
+			actual = actual.siguiente;
+		}
+		if (this.primero.elemento == menor) {
+			this.primero = this.primero.siguiente;
+		}
+	}
+
+	private NodoInt agregarAtras(int elem, NodoInt ultimo) {
+		NodoInt nuevo = new NodoInt(elem);
+		ultimo.siguiente = nuevo;
+		return nuevo;
+	}
+
+	public int menor() {
+		NodoInt actual = this.primero;
+		int menor = actual.elemento;
+		while (actual != null) {
+			if (actual.elemento < menor)
+				menor = actual.elemento;
+			actual = actual.siguiente;
+		}
+		return menor;
+	}
+	
+	//Fin del ejercicio
 
 }
