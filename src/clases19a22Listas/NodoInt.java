@@ -9,6 +9,9 @@ public class NodoInt {
 		this.siguiente=null;
 	}
 
+	public NodoInt() {
+	}
+
 	@Override
 	public String toString() {
 		return "NodoInt [elemento=" + elemento + ", siguiente=" + siguiente + "]";

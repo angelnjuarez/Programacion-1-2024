@@ -210,7 +210,7 @@ public class ListaInt {
 		}
 		return menorNodo;
 	}
-	
+
 	private NodoInt agregarAtras(int elem, NodoInt ultimo) {
 		NodoInt nuevo = new NodoInt(elem);
 		ultimo.siguiente = nuevo;
@@ -218,4 +218,44 @@ public class ListaInt {
 	}
 
 	// Fin del ejercicio
+
+	public ListaInt extraerListaCada(int p) {
+		ListaInt nueva = new ListaInt();
+		if (this.primero == null)
+			return nueva;
+		NodoInt actual = this.primero;
+		int cont = 1;
+		NodoInt actualLista = new NodoInt();
+		while (actual.siguiente != null) {
+			if (cont == p) {
+				NodoInt nuevoNodo = new NodoInt();
+				nuevoNodo.elemento = actual.siguiente.elemento;
+				if (nueva.primero == null) {
+					nueva.primero = nuevoNodo;
+					actualLista = nueva.primero;
+				} else {
+					actualLista.siguiente = nuevoNodo;
+					actualLista = actualLista.siguiente;
+				}
+				actual.siguiente = actual.siguiente.siguiente;
+				cont = 0;
+			} else {
+				actual = actual.siguiente;
+				cont++;
+			}
+		}
+		return nueva;
+	}
+
+//	public ListaInt extraerListaCada(int p) {
+//		ListaInt eliminados = new ListaInt();
+//		ListaInt quedan = new ListaInt();
+//		NodoInt actual = this.primero;
+//		int pos = 0;
+//		
+//		
+//		this.primero = quedan.primero;
+//		return eliminados;
+//	}
+
 }
