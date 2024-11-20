@@ -218,9 +218,6 @@ public class ListaInt {
 	}
 
 	// Fin del ejercicio
-<<<<<<< HEAD
-	
-=======
 
 	public ListaInt extraerListaCada(int p) {
 		ListaInt nueva = new ListaInt();
@@ -261,5 +258,4 @@ public class ListaInt {
 //		return eliminados;
 //	}
 
->>>>>>> 77e5c9a99ad7fec9fb2526dc876e00cf8d26f1b3
 }
